@@ -1,0 +1,38 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    tools {
+        maven 'Maven' // Make sure Maven is configured in Jenkins with this name
+    }
+    stages {
+        stage('Maven Validate Application') {
+            steps {
+                script {
+                    bat 'mvn validate' 
+                }
+            }
+        }
+        stage('Maven Compile Application') {
+            steps {
+                script {
+                    bat 'mvn compile'
+                }
+            }
+        }
+        stage('Maven Test Application') {
+            steps {
+                script {
+                    bat 'mvn test'
+                }
+            }
+        }
+        stage('Maven Package Application') {
+            steps {
+                script {
+                    bat 'mvn package'
+                }
+            }
+        }
+    }
+}
